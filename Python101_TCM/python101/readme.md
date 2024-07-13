@@ -88,7 +88,7 @@ print(bin(2)[2:])#binary represent of 2
 print(bin(2 >> 1))
 #0b1
 ```
-## Tuples
+## Tuples-immutable
 ```python
 tuple_item=(1,2,3)
 print(tuple_item)
@@ -111,4 +111,142 @@ string1="sting 1"
 print(string1[-1])#gives last character of string
 #1
 ```
-
+## Lists-mutable
+```python
+list1=['a','b','c']
+print(list1)
+list2=['a',1,2.0,['A','v'],('b')]
+print(list2)
+print(list2[3][-1])
+list1[0]='z'
+print(list1)
+del list1[2]
+print(list1)
+list1.append('g')
+print(list1)
+# built in functions max(),min(),.index,.reverse(),.count(),
+# .pop(),.sort(),.sort(reverse=true)
+list1.extend(list2)#extends list1
+print(list1)
+# list can't be copied it only makes reference by assining
+list3=list1
+print(list3)
+list3.append("abc")
+print(list1)#list1 is changed
+#u need to use .copy() function
+list3=list1.copy()
+# map fuction uses every item of list one by one to specified function
+list5=['1','2','3']
+print(list5)
+#[1,2,3]
+list6=list(map(float,list5))
+print(list6)
+#[1.0,2.0,3.0]
+```
+## Dictionaris and sets
+```python
+dic1={"a":1,'b':2}
+print(dic1)
+print(dic1.get("a"))
+print(dic1.values())
+print(dic1.keys())
+print(dic1.items())
+# some functions .update({}),.pop,del
+#sets has unpredictable order and no duplicates
+set1={'a','b','c'}
+set1.add("d")
+set2={"1",2,3}
+set1.update(set2)
+print(set1)
+#set builtin fuction .remove(),.union()
+```
+## conditonals and loops
+```python
+if not False:
+    print("true")
+if 1<2:
+    print("true")
+if 1<1:
+    print("true")
+elif 1<2:
+    print("true")
+else:
+    print("else")
+if 1>1 or 2>1:
+    print("greater")
+a=1
+while a<=5:
+    a+=1
+    print(a)
+for i in [0,1,2,3,4,5]:
+    print(i)
+for i in range(5):
+    for j in range(6,10):
+        print(i,j)
+for i in range(5):
+    if i==3:
+        break
+    print(i)
+#0,1,2
+for i in range(5):
+    if i==3:
+        continue
+    print(i)
+#0,1,2,4
+for i in range(5):
+    if i==3:
+        pass
+    print(i)
+#0,1,2,3,4
+for c in "string":
+    print(c)
+for key,value in {"a":1,"b":2}.items():
+    print(key,value)
+```
+## Read and write files & user input
+```python
+f=open('top-100.txt')
+print(f)
+#read mode
+f=open('top-100.txt','rt')
+print(f.read())
+f.seek(0)#bcuz alerady read so we need to set it 0
+print(f.readlines())
+f.seek(0)
+for line in f:
+    print(line.strip())
+f.close()
+#write mode
+f=open('test.txt','w')
+f.write("second line")
+#append mode (a)
+#another way
+with open('top-100.txt') as f:
+    for line in f:
+        print(line)
+#user input
+inp=input("enter")
+print(inp)
+```
+## Exception handling
+```python
+try:
+    f=open('aaaa')
+except:
+    print("file not found")
+try:
+    ksdlsd
+except:
+    print("file not found")
+#causes same error so use prebuilt errors
+try:
+    f=open('aaaa')
+except FileNotFoundError:
+    print("file not found")
+n='aaa'
+if n==0:
+    raise Exception("n can't bd 0")
+if type(n) is not int:
+    raise Exception("n must be an int")
+print(1/n)
+```
