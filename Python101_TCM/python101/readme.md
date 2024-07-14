@@ -250,3 +250,68 @@ if type(n) is not int:
     raise Exception("n must be an int")
 print(1/n)
 ```
+## List comprehensions
+```python
+list1=['a','b','c']
+print(list1)
+list2=[x for x in list1]
+print(list2)
+lsit3=[x for x in list1 if x=='a']
+print(lsit3)
+list4=[x for x in range(5)]
+print(list4)
+list5=[hex(x) for x in range(5)]
+print(list5)
+list6=[[1,2,3],[4,5,6]]
+list7=[y for x in list6 for y in x]
+print(list7)
+list8=[c for c in "string"]
+print(list8)
+print("".join(list8))
+print("-".join(list8))
+```
+## Functions and lambdas
+```python
+def fun1():
+    print("hello")
+fun1()
+def fun2():
+    return "hello"
+print(fun2())
+def fun3(s="default"):
+    print(s)
+fun3("hello")
+#infinite arg
+def fun4(s,*more):
+    print("{} {}".format(s," ".join([s for s in more])))
+fun4("function",'a','b')
+#infinite dictionary
+def fun5(**dic):
+    for key in dic:
+        print(key,dic[key])
+fun5(a='1',b='2')
+#global and local variables
+v=100
+def fun6():
+    v=5
+    print(v)#5
+fun6()
+print(v)#100
+def fun7():
+    global v
+    v=v+10#to manipulate global variable we need to specify it
+    print(v)#110
+fun7()
+print(v)#110
+#recursive
+def fun8(x):
+    print(x)
+    if x>0:
+        fun8(x-1)
+fun8(8)
+#lambdas-no name function  
+add = lambda x,y:x+y
+print(add(10,9))
+even=lambda x:x%2==0
+print(even(4))
+```
