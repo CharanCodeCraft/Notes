@@ -46,14 +46,14 @@ x=requests.get('http://httpbin.org/get')
 #prints the response of the server for the requested path
 for key,value in x.headers.items():
     print(key,":",value)
-print(x.headers) 
+print(x.headers) #gives response headers
 print(x.headers['Server'])#returns the server 
 print(x.status_code)#returns the response code
 print(x.elapsed)#gives the response time 
 print(x.cookies)#gives the cookie value assigned by the server 
-#prints the overall request header and parameters in a text format
-print(x.content)
-print(x.text)
+#prints the overall response content in a text and byte format
+print(x.content)#byte
+print(x.text)#normal
 #specifing parameters to url
 y=requests.get('http://httpbin.org/get',params={'id':'1'})
 print(y.url)
