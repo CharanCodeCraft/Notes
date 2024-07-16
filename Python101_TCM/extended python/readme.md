@@ -61,8 +61,8 @@ z=requests.get('http://httpbin.org/get?id=1')
 print(z.url)
 #specifing custom headers for the request
 x=requests.get('http://httpbin.org/get',params={'id':'3'},headers={'Accept':'application/json','host':'127.0.0.1'})
-print(x.text)#request
-print(x.headers)#response
+print(x.text)#rsponse content
+print(x.headers)#response header
 #using other methods
 x=requests.delete("http://httpbin.org/delete")
 print(x.headers)
