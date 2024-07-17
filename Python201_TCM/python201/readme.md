@@ -67,3 +67,13 @@ with open('hackers.pickle','rb') as de:
 print(deser)
 ```
 ## Clousers
+```python
+def outer_fun(a):
+    print("outer function: {}".format(a))
+    def inner_fun():
+        print("inner function: {}".format(a))
+    return inner_fun
+outer_fun("test")#inner function is not called here
+test=outer_fun("test")
+test()#inner function is called here
+```
