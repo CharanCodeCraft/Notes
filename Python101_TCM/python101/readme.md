@@ -1,5 +1,5 @@
 # Python101
-1. [Intro](#sIntro)
+1. [Intro](#Intro)
 2. [Basics](#Basics)
 # Intro
 * Python is easy language
