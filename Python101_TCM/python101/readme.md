@@ -205,8 +205,9 @@ for key,value in {"a":1,"b":2}.items():
 ```
 ## Read and write files & user input
 ```python
-f=open('top-100.txt')
+f=open('top-100.txt')#default readmode
 print(f)
+#f.name and f.mode to get name and mode
 #read mode
 f=open('top-100.txt','rt')
 print(f.read())
@@ -220,13 +221,16 @@ f.close()
 f=open('test.txt','w')
 f.write("second line")
 #append mode (a)
-#another way
+#another way-context manager
+#variable at right and automatically close after the block
 with open('top-100.txt') as f:
     for line in f:
-        print(line)
+        print(line,end='')
 #user input
-inp=input("enter")
+inp=input("\nenter")
 print(inp)
+#f.readline to get one line at a time
+#to open image open in rb,wb mode
 ```
 ## Exception handling
 ```python
