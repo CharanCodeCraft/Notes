@@ -340,9 +340,9 @@ subprocess.run('ls |grep new.py',shell=True)
 ```
 ## Threading module(concurrency)
 * Without threading orderly running script
-![Without threading orderly running](/Cybersecurity-notes/Scripting/Python/images/threading-1.svg)
+![Without threading orderly running](/Scripting/Python/images/threading-1.svg)
 * With threading concurrently running script
-![With threading concurrently running script](/threading-2.svg)
+![With threading concurrently running script](/Scripting/Python/images/threading-2.svg)
 * So, in threading what happens means while the script encounter sleep method it doesn't pause the main thread it continous the script until end
 * Threads is helpful only for I/O bound operations like downloading img from online(network oper) or file handling and not for CPU bound operations like resizing the img insted we can use multiprocessing 
 ```python
@@ -434,7 +434,7 @@ print(f"Finished downloading in {t2-t1} seconds...")
 ```
 ## Multiprocessing module
 * Without multiprocessing orderly running script
-![Without threading orderly running](/multiprocessing-1.svg)
+![Without threading orderly running](/Scripting/Python/images/multiprocessing-1.svg)
 * With multiprocessing parallely running script
-![With threading concurrently running script](/multiprocessing-2.svg)
+![With threading concurrently running script](/Scripting/Python/images/multiprocessing-2.svg)
 * Mutiprocessing is used for cpu bound operations like playing with num or resizing image to run script parallely
