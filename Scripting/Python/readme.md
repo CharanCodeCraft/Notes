@@ -206,3 +206,235 @@ for match in matches:
     print('hi')
 #anotherway using sub(r'\2\3',urls) method
 ```
+## Beautifulsoup module
+```python
+from bs4 import BeautifulSoup
+import requests
+import csv
+
+req=requests.get('https://academy.tcm-sec.com/')
+soup=BeautifulSoup(req.text,'lxml')
+print(soup)#html content is printed
+print(soup.prettify())#formatted
+#to get specific tags from html
+print('-'*100)
+match=soup.title
+print(match)
+print(match.text)#to get only text without tag
+#to get specific tag out of same tags use find
+# match=soup.find('div',id='siteInfo')
+# print(match.prettify())
+# link=match.a.text
+# print(link)
+#extracting things from div's under same class
+print('-'*100)
+for course in soup.find_all('div',class_='featured-product-card__content'):
+    title=course.h3.text
+    print('***{}***'.format(title),end='')
+    detail=course.h4.text
+    print(detail)
+#to access the attributes like src in tag like iframe use ['src']
+#to produce link from iframe
+article=soup.find('article')
+headline=article.h2.a.text
+print(headline)
+summary=article.find('div',class_='entry-content').p.text
+print(summary)
+vid_src=article.find('iframe',class_='youtube-player')['src']
+vid_id=vid_src.split('/')[4]#4 leaves the first 3 index as joined and splits other and stores it
+vid_id=vid_id.split('')[0]
+yt_link=f'https://youtube.com/watch?v={vid_id}'
+print(yt_link)
+#saving data to csv file using csv module
+csc_file=open('scraped_data.csv','w')
+csv_writer=csv.writer(csc_file)
+csv_writer.writerow(['Title','Content','Imagelinks'])
+for article in soup.find_all('a'):
+    try:
+        title=article.h3.text
+        print('***{}***'.format(title),end='')
+        content=article.h4.text
+        print(content,end='')
+        imgdiv=article.find('div',class_='featured-product-card__image-container').img['src']
+        print('{} link: {}'.format(title,imgdiv))
+        print()
+        csv_writer.writerow([title, content, imgdiv])
+    except:
+        a=2
+csc_file.close()
+```
+## json module
+```python
+import json #Javascript object notation
+from urllib.request import urlopen
+people_string='''
+{
+    "people":[ 
+        {
+        "name":"john",
+        "phone":"0944",
+        "emails":"lksjfd",
+        "licence":true
+        },
+        {
+            "name":"doe",
+            "phone":"030933",
+            "emails":null,
+            "license":false
+        }
+    ]
+}
+'''
+jsondata=json.loads(people_string)#loads variables
+print(type(jsondata))#dictionary
+print(jsondata)
+#printing json data
+for people in jsondata['people']:
+    print(people)
+for people in jsondata['people']:
+    print(people['name'])
+#deleting and updating json data
+for people in jsondata['people']:
+    del (people['phone'])
+new_json=json.dumps(jsondata,indent=2,sort_keys=True)
+print(new_json)
+print('-'*100)
+#Loading json data from js file
+with open('state.json','r') as f:
+    data=json.load(f)
+for state in  data['states']:
+    print(state['name'])
+for state in  data['states']:
+    del (state['area_codes'])
+with open('new_states.json','w') as f:
+    json.dump(data,f)
+#getting data from website
+with urlopen("https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json") as response:
+    source=response.read()
+data =json.loads(source)
+print(json.dumps(data,indent=2))
+```
+## Subprocess module
+```python
+import subprocess #it is module to run commands
+#subprocess.run('ls -la',shell=True)#directly prints the output
+#subprocess.run(['ls','-la'])#another way without shell
+#storing it to varible
+p1=subprocess.run('ls -la',shell=True,capture_output=True)#here also dirctly prints out
+print(p1.args)
+print(p1.returncode)#0-success
+print(p1.stdout.decode())#prints as bytes so use decode()
+#redirecting it to file
+with open('output.txt','w') as f:
+    p1=subprocess.run('ls -la',shell=True,stdout=f)
+#python doesn't pass error for cmd so we need to check error
+p1=subprocess.run('ls -la dne',shell=True,capture_output=True)
+print(p1.returncode)#returns 1 if error
+print(p1.stderr)#actual error 
+#use check attribute to through exception in python output 
+#ignoring error
+p1=subprocess.run('ls -la dne',shell=True,stderr=subprocess.DEVNULL)
+print(p1.stderr)#none
+subprocess.run('ls |grep new.py',shell=True)
+#another way is to use another process and use input attr to it
+```
+## Threading module(concurrency)
+* Without threading orderly running script
+![Without threading orderly running](/threading-1.svg)
+* With threading concurrently running script
+![With threading concurrently running script](/threading-2.svg)
+* So, in threading what happens means while the script encounter sleep method it doesn't pause the main thread it continous the script until end
+* Threads is helpful only for I/O bound operations like downloading img from online(network oper) or file handling and not for CPU bound operations like resizing the img insted we can use multiprocessing 
+```python
+import threading
+import time
+import concurrent.futures
+
+start=time.perf_counter()#used to record the time taken to run script
+def dosomething(sec):
+    print(f"Sleeping {sec} second..")
+    time.sleep(sec)
+    return "Done sleeping.."
+#Just creating thread
+t1=threading.Thread(target=dosomething,args=[1])
+t2=threading.Thread(target=dosomething,args=[1])
+#Starting thread
+t1.start()
+t2.start()
+#joining thread to not continue the script until sleep overs
+t1.join()
+t2.join()
+#So, now the script takes 1second to run
+finish=time.perf_counter()
+print("Finished in {} seconds".format(round(finish-start,2)))
+#starting number of thread using loop
+start=time.perf_counter()
+threads=list()
+for _ in range(10):#underscore is used as throwable 
+    t=threading.Thread(target=dosomething,args=[3])#adding arg
+    t.start()
+    threads.append(t)
+#we can't join in this loop so we create a list of htread created in order
+for thread in threads:
+    thread.join()
+finish=time.perf_counter()
+print("Finished in {} seconds".format(round(finish-start,2)))
+#efficient way of creating threads using concurrent.futures
+start=time.perf_counter()
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    secs=[5,4,3,2,1]
+    results =[executor.submit(dosomething,sec) for sec in secs]
+    #using map results=executors.map(dosomething,secs)
+    for f in concurrent.futures.as_completed(results):
+        print(f.result())#returns the value from fun
+finish=time.perf_counter()
+print("Finished in {} seconds".format(round(finish-start,2)))
+```
+* Usecase of Threading
+```python
+import requests
+import concurrent.futures
+import time
+imgurls=[
+    'https://images.unsplash.com/photo-1516117172878-fd2c41f4a759',
+    'https://images.unsplash.com/photo-1532009324734-20a7a5813719',
+    'https://images.unsplash.com/photo-1524429656589-6633a470097c',
+    'https://images.unsplash.com/photo-1530224264768-7ff8c1789d79',
+    'https://images.unsplash.com/photo-1564135624576-c5c88640f235',
+    'https://images.unsplash.com/photo-1541698444083-023c97d3f4b6',
+    'https://images.unsplash.com/photo-1522364723953-452d3431c267',
+    'https://images.unsplash.com/photo-1513938709626-033611b8cc03',
+    'https://images.unsplash.com/photo-1507143550189-fed454f93097',
+    'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e',
+    'https://images.unsplash.com/photo-1504198453319-5ce911bafcde',
+    'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99',
+    'https://images.unsplash.com/photo-1516972810927-80185027ca84',
+    'https://images.unsplash.com/photo-1550439062-609e1531270e',
+    'https://images.unsplash.com/photo-1549692520-acc6669e2f0c'
+]
+t1=time.perf_counter()
+def download(url):
+    req=requests.get(url)
+    re=req.content
+    if req.status_code==404:
+        return "deleted"
+    imgname=url.split('/')[3]
+    with open(f'{imgname}.jpg','wb') as f:
+        f.write(re)
+    return "success"
+"""Normal downloading 
+ for result in map(download,imgurls):
+     print(result)"""
+#Using thread
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    for result in executor.map(download,imgurls):
+        print(result)
+t2=time.perf_counter()
+print(f"Finished downloading in {t2-t1} seconds...")
+```
+## Multiprocessing module
+* Without multiprocessing orderly running script
+![Without threading orderly running](/multiprocessing-1.svg)
+* With multiprocessing parallely running script
+![With threading concurrently running script](/multiprocessing-2.svg)
+* Mutiprocessing is used for cpu bound operations like playing with num or resizing image to run script parallely

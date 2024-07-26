@@ -101,7 +101,7 @@ tupl_combined=tuple_item+tuple_mix
 print(tupl_combined)
 item1,item2,item3=tuple_item
 print(item1)
-print(tupl_combined.index(3))
+print(tupl_combined.index(3)) 
 print(tupl_combined[-1])#last item
 print(tupl_combined[-2])
 #sliceing

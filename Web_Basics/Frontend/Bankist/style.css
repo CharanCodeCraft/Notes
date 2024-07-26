@@ -1,0 +1,317 @@
+*{
+    margin:0px;
+    border:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: #f3f3f3;
+}
+/* navbar */
+p{
+    font-size: large;
+}
+.nav-bar{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 1223px;
+    height: 52.5px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+.nav-icon{
+    background-image: url('/images/logo.png');
+    background-size: contain;
+    height: 52.5px;
+    width: 52.5px;
+}
+.nav-text{
+    width: 240px;
+    height: 30px;
+    align-items: center;
+    font-size: 1.2rem;
+    font-family: 'poppins',sans-serif;
+    font-weight: bold;
+    color: #444;
+}
+.nav-inpuser{
+    width: 120px;
+    height: 36px;
+    border-style: none;
+    border-radius: 20px;
+    text-align: center;
+}
+.nav-inppin{
+    width: 120px;
+    height: 36px;
+    border-style: none;
+    border-radius: 20px;
+    text-align: center;
+}
+.input{
+    display: flex;
+    width: 300px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.nav-arrow{
+    width: 22px;
+    height: 36px;
+    /* text-align: center; */
+    /* padding-top: 15px; */
+    border-style: none;
+}
+/* details */
+.detail{
+    /* visibility: hidden; */
+    opacity: 0;
+    width: 1100px;
+    height: 650px;
+    /* background-color: #b7a5a5; */
+    position: absolute;
+    top: 90px;
+    left: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: center;
+    /* overflow-y: auto; */
+}   
+.head{
+    width: 85%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cur-bal h1{
+    font-size: 1.3rem;
+    font-weight: 540;
+}
+.cur-bal p{
+    font-size: .9rem;
+    color: #888;
+}
+.bal{
+    font-size: 3rem;
+}
+/* transaction */
+.transaction{
+    width: 543px;
+    height: 500px;
+    background-color: white;
+    overflow-y: auto;
+}
+.tran{
+    display: flex;
+    height: 71.5px;
+    justify-content: space-around;
+    align-items: center;
+    /* width: 150px; */
+}
+.withdraw{
+    width: 100px;
+    border:1px solid transparent;
+    border-radius: 10px;
+    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+    color: white;
+    text-align: center;
+    /* margin-left: 30px; */
+}
+.withdraw h1{
+    font-size: .8rem;
+    font-weight: 400;
+}
+.money{
+    font-size: 1.2rem;
+    width: 100px;
+    text-align: right;
+}
+.Deposit{
+    width: 70px;
+    border:1px solid transparent;
+    border-radius: 10px;
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+    color: white;
+    text-align: center;
+    /* margin-left: 30px; */
+}
+.Deposit h1{
+    font-size: .8rem;
+    font-weight: 400;
+}
+/* calculation */
+.calculation{
+    width: 500px;
+    height: 500px;
+    /* background-color: #b2f3da; */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.transfer{
+    width: 450px;
+    height: 150px;
+    background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+}
+.transfer-money{
+    display: flex;
+    justify-content: space-evenly;
+    width: 400px;
+    height: 70px;
+}
+.transfer-money input{
+    border-style: none;
+    width: 130px;
+    height: 25px;
+    background-color: #fce27c;
+    border-radius: 10px;
+}
+.transfer span{
+    width: 400px;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+.to{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 130px;
+    height: 60px;
+}
+.transfer-money p{
+    font-weight: lighter;
+    font-size: .9rem;
+}
+.amt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 130px;
+    height: 60px;
+}
+.tran-arrow{
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    /* padding-top: px; */
+    margin-top: 4px;
+    border-style: none;
+}
+.tran-arrow i{
+    padding-top: 5px;
+}
+/* .Deposit */
+.depositing{
+    width: 450px;
+    height: 150px;
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+}
+.depositing span{
+    width: 400px;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+.deposit-money{
+    display: flex;
+    justify-content: space-evenly;
+    width: 400px;
+    height: 70px;
+}
+.deposit-money input{
+    border-style: none;
+    width: 130px;
+    height: 25px;
+    background-color:#c8fa9b;
+    border-radius: 10px;
+}
+/* close account */
+.close{
+    width: 450px;
+    height: 150px;
+    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+}
+.close span{
+    width: 400px;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+.close-money{
+    display: flex;
+    justify-content: space-evenly;
+    width: 400px;
+    height: 70px;
+}
+.close-money input{
+    border-style: none;
+    width: 130px;
+    height: 25px;
+    background-color: #ff9ea2;
+    border-radius: 10px;
+}
+/* footer */
+.foot{
+    display: flex;
+    position: absolute;
+    top: 650px;
+    left: 50px;
+    width:1000px;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+.clac{
+    display: flex;
+    width: 400px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+.text{
+    font-size: .7rem;
+}
+.amount{
+    font-size: 1.4rem;
+}
+.income .amount{
+    color: #83d566;
+}
+.out .amount{
+    color: #f84c5d;
+}
+.intrest .amount{
+    color: #83d566;
+}
+.sorting{
+    width: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.time-out p{
+    font-size: .85rem;
+}
+.time-out span{
+    font-weight: bold;
+}

@@ -1,0 +1,51 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+body{
+    background-color: #00008b;
+}
+.main{
+    background-color: #d3d3d3;
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    width: 520px;
+    margin-top: 10px;
+    margin-left: 400px;
+    margin-right: 400px;
+    justify-content: center;
+    padding: 10px;
+}
+.border{
+    border: 1px solid black;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 5px;
+}
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+span{
+    margin-left: 8px;
+}
+button{
+    padding: 2px;
+}
+.para{
+    color: white;
+    background-color: black;
+}
+#monsterStats {
+    display: none;
+    border: 1px black solid;
+    color: white;
+    padding: 5px;
+    background-color: red;
+  }
+#text{
+    color: white;
+}
