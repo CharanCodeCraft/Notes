@@ -340,7 +340,7 @@ subprocess.run('ls |grep new.py',shell=True)
 ```
 ## Threading module(concurrency)
 * Without threading orderly running script
-![Without threading orderly running](/threading-1.svg)
+![Without threading orderly running](/Cybersecurity-notes/Scripting/Python/images/threading-1.svg)
 * With threading concurrently running script
 ![With threading concurrently running script](/threading-2.svg)
 * So, in threading what happens means while the script encounter sleep method it doesn't pause the main thread it continous the script until end
