@@ -1,0 +1,1 @@
+## This contains notes for bash for beginner course by bitten tech

@@ -1,0 +1,1 @@
+# This dir contains backend tech like sql,node.js and other
