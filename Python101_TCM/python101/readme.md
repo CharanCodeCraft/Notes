@@ -6,7 +6,7 @@
 * It is an intrepeted language
 # Basics
 ## Variables and data types
-```
+```python
 name="neut"
 print(name)
 name,name_le="neut",4
