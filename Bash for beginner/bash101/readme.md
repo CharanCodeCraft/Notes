@@ -176,3 +176,34 @@ for i in $str2; do
  echo $i
 done
 ```
+## Functions
+```bash
+#!/bin/bash
+
+#creating function 
+function_name(){
+	echo "hello $1"
+}
+function_name "charan"  #calling function and passing arg
+
+#scope of var
+a=10 #global scope
+b=50
+add(){
+	local a=5  #local scope
+	b=10 #from global scope
+	echo "$(( a + b ))"
+}
+add 
+echo $b $a
+
+#returning value - only returns the exit code
+echo $?
+
+#modifing or overriding pre-defined functions
+echo(){
+	builtin echo -n `date +[%Y-%m-%d] ` ": "
+	builtin echo $1
+}
+echo "modified"
+```
