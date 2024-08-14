@@ -75,6 +75,9 @@ source code(response body)
 400-499 client side error 400bad request,403forbidden,404 not found.
 500-599 server side error DOS 502/503.
 ```
+# Web Architecture
+## Understanding frontend,backend and web servers
+![Web](/images/web.png)
 
 
 
