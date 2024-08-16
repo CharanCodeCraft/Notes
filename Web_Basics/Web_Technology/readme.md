@@ -79,9 +79,42 @@ source code(response body)
 ## Understanding frontend,backend and web servers
 ![Web](/images/web.png)
 
+## Servers
+1. web server
+2. application server
+3. file server
+4. email server
+5. database server
 
+## Load balancing and caching
+#### load balancers
+* In this scenerio there will be many servers to handle all the servers handled by load balancer to balance the request through different logic or algorithm
+* One such is round robin where every server recieves one request until other servers receives other request like circualr loop
+#### Caching
+* It is used to save network bandwidth or to reduce to serve the response
+* The same request are requested again and again then it is stored cached memory or temporarly 
+* It can be cached in front end usin `cache-control: header`
 
+## Proxy and Reverse proxy
+#### Proxy server
+* It is a server which recieves request from connected device and forward's the request
+* It can be used to bypass the firewall of colleges or other firewalls where requests are blocked
+* Typically it is used to as intermediate between different number of servers and then to forward request to required server 
+* By using subdomain it servers the request to different servers
+* Diffrent reverse proxy servers- ngnix,haproxy,apache
 
+## Serverless - cloud based
+* It means u don't need to setup everything u will all the system u just need purchase and do programming
+* Most of the website host website on cloud servers like amazon and other company servers
+
+## ASN numbers of website provided by ISP 
+* ASN is number provided by ISP to a huge company for getting block of IP for huge companies
+
+## CDN - content delivery network
+* It is like servers all over the dropped in different location to serve static file to website 
+* It is used to reduce latency by accesing nearest cdn in reqested location
+* It is used by big companies most of the time with worldwide users to serve static files like js,img,videos and other
+* Ex cloudfare it can also act as a firewall sometimes 
 
 
 
