@@ -1,11 +1,17 @@
 # Python101
+
 1. [Intro](#Intro)
 2. [Basics](#Basics)
+
 # Intro
-* Python is easy language
-* It is an intrepeted language
+
+- Python is easy language
+- It is an intrepeted language
+
 # Basics
+
 ## Variables and data types
+
 ```python
 name="neut"
 print(name)
@@ -33,7 +39,9 @@ print(round(8.53))
 print(abs(-3))
 #3
 ```
+
 ## String Formating
+
 ```python
 sting1="string 1"
 string2="string 2"
@@ -65,7 +73,9 @@ print("string is {} so long".format(len(sting1)))
 length=len(sting1)
 print(f"string1 is {length} characters long")
 ```
+
 ## boolean & operators
+
 ```python
 valid=True
 not_valid=False
@@ -88,7 +98,9 @@ print(bin(2)[2:])#binary represent of 2
 print(bin(2 >> 1))
 #0b1
 ```
+
 ## Tuples-immutable
+
 ```python
 tuple_item=(1,2,3)
 print(tuple_item)
@@ -101,7 +113,7 @@ tupl_combined=tuple_item+tuple_mix
 print(tupl_combined)
 item1,item2,item3=tuple_item
 print(item1)
-print(tupl_combined.index(3)) 
+print(tupl_combined.index(3))
 print(tupl_combined[-1])#last item
 print(tupl_combined[-2])
 #sliceing
@@ -111,7 +123,9 @@ string1="sting 1"
 print(string1[-1])#gives last character of string
 #1
 ```
+
 ## Lists-mutable
+
 ```python
 list1=['a','b','c']
 print(list1)
@@ -143,7 +157,9 @@ list6=list(map(float,list5))
 print(list6)
 #[1.0,2.0,3.0]
 ```
+
 ## Dictionaris and sets
+
 ```python
 dic1={"a":1,'b':2}
 print(dic1)
@@ -160,7 +176,9 @@ set1.update(set2)
 print(set1)
 #set builtin fuction .remove(),.union()
 ```
+
 ## conditonals and loops
+
 ```python
 if not False:
     print("true")
@@ -203,7 +221,9 @@ for c in "string":
 for key,value in {"a":1,"b":2}.items():
     print(key,value)
 ```
+
 ## Read and write files & user input
+
 ```python
 f=open('top-100.txt')#default readmode
 print(f)
@@ -232,7 +252,9 @@ print(inp)
 #f.readline to get one line at a time
 #to open image open in rb,wb mode
 ```
+
 ## Exception handling
+
 ```python
 try:
     f=open('aaaa')
@@ -254,7 +276,9 @@ if type(n) is not int:
     raise Exception("n must be an int")
 print(1/n)
 ```
+
 ## List comprehensions
+
 ```python
 list1=['a','b','c']
 print(list1)
@@ -274,7 +298,9 @@ print(list8)
 print("".join(list8))
 print("-".join(list8))
 ```
+
 ## Functions and lambdas
+
 ```python
 def fun1():
     print("hello")
@@ -313,7 +339,7 @@ def fun8(x):
     if x>0:
         fun8(x-1)
 fun8(8)
-#lambdas-no name function  
+#lambdas-no name function
 add = lambda x,y:x+y
 print(add(10,9))
 even=lambda x:x%2==0
