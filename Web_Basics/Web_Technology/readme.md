@@ -116,6 +116,16 @@ source code(response body)
 * It is used by big companies most of the time with worldwide users to serve static files like js,img,videos and other
 * Ex cloudfare it can also act as a firewall sometimes 
 
+## Web sockets
+
+* web sockets mainly used to maintain statefull connection where http can't do
+* Initialy it uses some type of data to identify and then makes stateful connection
+* After this connection also there will be http stateless connection flowing using some type of identifers 
+
+### Establishing websocket connection
+* client sends http request with websocket key header to the server
+* Server sends 101 switching protocol to client 
+
 
 
 
