@@ -275,3 +275,48 @@ db.courses.deleteMany({price:100})
 ```
 ## Mongoose
 * It is a package to connect a mongodb to express
+* Mongoose is better version of mongodb raw package bcuz it provides scheme to validate easily
+* Improves website security
+```js
+//main.js
+import mongoose from "mongoose";
+import express from "express";
+//importing the schema
+import { Todo } from "./models/todo.js";
+//connecting the database
+let a = await mongoose.connect("mongodb://localhost:27017/todo")
+//express
+const app = express()
+const port =3000
+app.get('/', (req, res) => {
+    const todo = new Todo({title:"first one",body:"khkjsdf",date:true})
+    todo.save()
+    res.send('hello world')
+})
+app.get('/a',async (req, res) => {
+    const to = await Todo.findOne({})
+    res.json({title:to.title})
+})
+app.listen(port,()=>{
+    console.log("example");
+})
+//schema.js
+import mongoose from "mongoose";
+const Schema = mongoose.Schema;
+//defineing schema
+const todoschema = new Schema({
+  title: String,
+  body: String,
+  date:Boolean
+});
+//exporting the schema
+export const Todo = mongoose.model('Todo', todoschema);
+//other options with schema's
+const Comment = new Schema({
+  name: { type: String, default: 'hahaha' },
+  age: { type: Number, min: 18, index: true },
+  bio: { type: String, match: /[a-z]/ },
+  date: { type: Date, default: Date.now },
+  buff: Buffer
+});
+```
