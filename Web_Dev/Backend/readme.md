@@ -320,3 +320,59 @@ const Comment = new Schema({
   buff: Buffer
 });
 ```
+## Hosting in vps(virtual private server)
+* Hosting providers conatins datacenter(meaning 24/7 computers) running for us, when we purchase it
+* Hosting providers conatins datacenter in different geo-location to provide faster communication
+* When u buy a vps u will get 3 things ipaddress of that system,username,password to access terminal remotely through ssh
+* U can use filezilla to transfer files from local to remote server easily by drag and drop
+* use ssh cmd to connect to server `ssh username@ip-address`
+* There are mainly 3 different hosting
+    - Shared hosting - multiple user will be created for one system and u will be given one of them
+    - dedicated hosting - u will be provided one completes system
+    - Managed hosting - they will provide simple user friendly dashboard to simplify all hosing process, it can be provided to any platforms like node.js,wordpress
+* we can use dotenv(.env) to store secret credentials that should be used in source code, then u can use it as environment variables through .env file
+* For hosting website in the remote system we can use different web servers like apache,ngnix..
+    - in apache server we can install it through `apt install apache` and then store serving files in `/var/www/` to host
+* At last we need a name for our ip-adddress, for that we buy a domainname that is available then provide a_record as our ip and then it is complete  
+
+## Hosting express app in ubuntu vps
+1. Installing nodejs in ubuntu vps using 
+```
+cd ~
+curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+nano nodesource_setup.sh
+sudo bash nodesource_setup.sh
+sudo apt install nodejs
+sudo apt install build-essential
+```
+2. Create a nodejs app
+```
+npm init
+npm i express
+vim main.js
+node main.js
+```
+3. Install pm2 for continous hosting
+```
+npm install -g pm2
+pm2 start main.js
+```
+4. Setting up Nginx as a reverse proxy
+```
+apt install nginx
+sudo nano /etc/nginx/sites-available/default
+server {
+...
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+...
+}
+sudo nginx -t
+sudo systemctl restart nginx
+```

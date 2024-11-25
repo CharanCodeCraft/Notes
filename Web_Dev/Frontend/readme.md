@@ -78,3 +78,34 @@ let a = new Promise((resolve,reject)=>{
         console.log(err)
     })
 ```
+## Async/Await and fetch
+* synchronous executes line by line blocking the main thread 
+* async doesn't stop the execution without blocking main thread
+* fetch,settimeout and setinterval are async function not waiting for this function continuing the remaining code
+* but some times fetch func time too much time so we need to wait until it finishes to get data so we use await to wait for that to finish 
+* to use this await we need to use it inside a async function bcuz using it in normal flow doesn't make sense, it makes sync and we can't use like that
+```js
+async function getdata(){
+        //simulate getting data from server
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve(455)
+            },3000)
+        })
+    }
+    async function getdata(){
+        //simulate getting data from server
+        let x=await fetch('https://jsonplaceholder.typicode.com/todos/1')
+        let data= await x.json()
+        console.log(data)
+        return 1
+    }
+    async function main(){
+        console.log("loading..")
+        console.log("load data")
+        let data=await getdata()
+        console.log(data)
+        console.log("process data")
+    }
+    main()
+```
