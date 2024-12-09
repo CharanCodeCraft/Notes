@@ -109,3 +109,177 @@ async function getdata(){
     }
     main()
 ```
+## Intro to react(why react)
+```
+Note: React is a library not a framework meaning that it will not provide a part of making application but not full
+whereas, next.js is framework and it gives complete things required to make application
+```
+* Index.html is the main serving page which connects app.jsx using script tag
+1. States
+    * It was developed by facebook
+    * consider a scenerio like when u try to manipulate the content of html using js dom manipulation 
+    * First u need to select the class and use innerhtml to change the contents of it
+    * so better way is to create a varible for the html inner content and change it accordingly based on requirement and just print that varible inside the html this thing is called state
+    * this is how it looks
+    * We can use state which means that once we update the variable, it changes across the page
+        ```js
+        <html>
+        <head>
+        <title>react</title>
+        </head>
+        <body>
+        <script>
+        let box1="hello box1";
+        let box2="hello box2";
+        </script>
+        <h1>box1</h1>
+        <h2>box2</h2>
+        </body>
+        ```
+2. Components
+    * Components is like a part of program is extracted and used in different part of website with customization through its variables
+    * Like Navbar we can use it in different pages of website so we make it components 
+    * Components are already specified with names we can only use those like Navbar,Footer
+    * components contain different variables to customize the application
+    ```js
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>contact</li>
+            </ul>
+        </nav>
+    </body>
+    </html>
+    </Navbar color="red" background="purple"> <!--this is component with its user defined varibles in react -->
+    ```
+* Creating react application
+    - use this command `npx create-react-app appname`
+    - then use `npm start` to start the program
+    - Folder contains
+        - node_module subfolder for code for dependencies
+        - src subfolder with actual files for react
+        - public subfolder with the files to be served
+* we write html inside js i.e jsx while using react, which looks like html but converted into js
+```js
+//states example
+import logo from './logo.svg';
+import {useState} from 'react'
+import "./App.css"
+
+function App() {    //this is a "app" component
+  const [value,setValue]=useState(0)
+  return (
+    <div className="App">
+      <div>{value}</div> 
+      <button onClick={()=>{setValue(value+1)}}>click me</button>     
+    </div>
+  );
+}
+
+export default App;
+```
+## Components
+```
+Note: vite is used for creating basic structure app for react 
+```
+* Components can be created in seprate folder
+* Then we can import those component in main component app() using this syntax `import Footer from "./components/na"` and  use it using `<Navbar />
+* we can create css in any jsx by directly importing it
+* We can use those components in multiple times
+* common components used Navbar,Footer and Card
+- JSX
+    * jsx is a html where we can implement js also 
+    * It is very strict meaning all the tags should be closed
+    * and we can't create and return multiple tags like div all the tags should be under one tag(<></>) like body tag
+    * and we should use className instead of class bcuz class is already a defined keyword
+- Props in Components
+    * When we use components we can pass parameters to that components in main.jsx and then can be used in component.jsx file using props in function arguments
+    * When passing parameter we can use any name and add any text to it and directly used in html inside jsx
+    * while using inside html jsx we need to use `{props.param}`
+    * and also when we use style in individual tag then we can need to use `style={{cssproperties}}`
+
+```jsx
+//main app.jsx
+import React from "react"
+import Navbar from "./components/na"
+import Card from "./components/card"
+import "./App.css"
+function App() {
+
+  return (
+    <>
+      <Navbar />
+      <div className="cards">
+      <Card title="Title 1"/>
+      <Card title="Title 2"/>
+      <Card title="Title 3"/>
+      <Card title="Title 4"/>
+      </div>
+    </>
+  )
+}
+
+export default App
+// Card component
+import React from "react";
+import "./card.css"
+function card(props) {
+  return(<>
+    <div className="card">
+    <div className="title"><h1>{props.title}</h1></div>
+    <div className="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ad
+      veritatis, magnam earum molestias
+    </div>
+    </div>
+  </>)
+}
+export default card
+// Navbar component
+import React from "react"
+import "./na.css"
+function nav(){
+    return(
+        <>
+        <div>
+            <ul>
+                <li>Home</li>
+                <li>about</li>
+                <li>contact</li>
+            </ul>
+        </div>
+        </>
+    )
+}
+export default nav
+```
+
+## Hooks and usestate hook
+* Hooks are some function used to enhance capabilities and features
+* Different types of hook usestate,useref,useffect and we can make our own hook too..
+* Usestate is hook function used to make a state variable with a function to change the state variable
+* Usestate takes a parameter for state variable initial value
+* Initially we set a value for state variable and whenever we change state variable using setCount function it is changed everywhere it is used
+* When we use normal js variable to do this it doesn't reflect everytime and everywhere when the state variable changes, so we use usestate hook 
+```jsx
+import React, { useState } from "react"
+function App() {
+  const [cou,setcount]=useState(0)
+  return (
+    <>
+      <h1>Count:{cou}</h1>
+      <button onClick={()=>{setcount(c ou+1)}}>Up</button>
+    </>
+  )
+}
+
+export default App
+```

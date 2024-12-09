@@ -323,7 +323,12 @@ const Comment = new Schema({
 ## Hosting in vps(virtual private server)
 * Hosting providers conatins datacenter(meaning 24/7 computers) running for us, when we purchase it
 * Hosting providers conatins datacenter in different geo-location to provide faster communication
-* When u buy a vps u will get 3 things ipaddress of that system,username,password to access terminal remotely through ssh
+* When u buy a vps u will get 3 things static ipaddress of that system,username,password to access terminal remotely through ssh
+    - when u think why can't i host myself a server there are many reasons  
+        * scalability
+        * 24/7 internet and electricity
+        * security
+        * u need static ip which will be given by isp for cost 
 * U can use filezilla to transfer files from local to remote server easily by drag and drop
 * use ssh cmd to connect to server `ssh username@ip-address`
 * There are mainly 3 different hosting
