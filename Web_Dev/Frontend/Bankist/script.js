@@ -1,6 +1,6 @@
 'use strict';
 const account1={
-    owner:'Nitin Lowda',
+    owner:'Nitin D',
     movements:[200,450,-400,3000,-650,-130,70,1300],
     intrestrate:1.2,
     pin:1111
@@ -12,13 +12,13 @@ const account2={
     pin:2222
 };
 const account3={
-    owner:'Darshan Gandu',
+    owner:'Darshan MS',
     movements:[200,-200,340,-300,-20,50,400,-460],
     intrestrate:0.7,
     pin:3333
 };
 const account4={
-    owner:'Hrudhay Soda',
+    owner:'Hrudhay H',
     movements:[430,1000,700,50,90],
     intrestrate:1,
     pin:4444

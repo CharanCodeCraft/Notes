@@ -2,7 +2,7 @@
 ## Adding bootstrap to angular
 ## components 
 * component is like a part of a page that we divide and join it in main app component
-* Component can have only have one file i.e .ts file
+* Component can have   have one file i.e .ts file
 * to create component use `ng g c component`
 * mainly component has two things decorator with some fields and class has component
 * Decorators have mainly selector(like name of comp),module(required),templateurl,styleurl
@@ -12,7 +12,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet], 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -160,7 +160,7 @@ export const routes: Routes = [
   <button type="submit" class="btn btn-primary m-3" [disabled]="form.invalid">Submit</button>
 </form>
 ```
-## Reactive form
+## Reactive form  
 * less code on template but more on ts
 * u need to make variable type formgroup and add formcontrol to all keys and with that we need to add formcontrol and formgroup to template
 ```html
@@ -191,3 +191,89 @@ detailes:FormGroup=new FormGroup({
 ```
 ## API using httpclient
 * we can do different api request to fetch data from backend and merge with backend
+* We need to add `provideHttpClient()` this in app config to use http client 
+* then we can inject it in any component using inject
+```js
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-get-api',
+  imports: [FormsModule],
+  templateUrl: './get-api.component.html',
+  styleUrl: './get-api.component.css'
+})
+export class GetApiComponent {
+  //http=inject(HttpClient)   //normal inject
+  constructor(private http:HttpClient){}  //dependency injection
+  getdata:any[]=[]
+  dep:any={
+    "departmentId": 0,
+    "departmentName": "",
+    "departmentLogo": ""
+  }
+  res:any={}
+  //get api
+  getalluser(){
+    this.http.get("https://jsonplaceholder.typicode.com/posts").subscribe((res:any)=>{
+      debugger
+      this.getdata=res
+    },error=>{
+      console.log("hi")  
+    })
+  }
+  //post api
+  adduser(){
+      this.http.post("https://projectapi.gerasim.in/api/EmployeeManagement/AddNewDepartment",this.dep).subscribe((res:any)=>{
+        this.res=res
+        if(res.result){
+          alert("hi")
+        }
+      },error=>{
+        console.log("error")  
+      })
+  }
+}
+```
+## Services
+* Services are used to seprate data storing or api request from component to lessen code in component
+* To make services u need to use `ng g s servicename` and then inject it in required component
+```js
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ExampleTsService {
+  getalldep(){
+    return this.http.get("https://projectapi.gerasim.in/api/EmployeeManagement/GetParentDepartment")
+  }
+  deldep(obj:any){
+    return this.http.delete(`https://projectapi.gerasim.in/api/EmployeeManagement/DeletedepartmentBydepartmentId?departmentId=${obj}`)
+  }
+  constructor(private http:HttpClient) { }
+}
+```
+## Sharing data b/w components
+* We can share a data as a property from a component included in other component and vice-versa
+* We use input and output decorators to achieve this 
+* output is used to connect a html template of child to component of parent
+```html
+//parent template
+<app-inp-out (btnclick)="click()" mes="1"/>
+//child template
+<p>repeated from {{mes}}</p>
+<button (click)="clicked()">click me</button>
+```
+```js
+//child ts
+export class InpOutComponent {
+  @Input() mes:string=''
+  @Output() btnclick=new EventEmitter<any>()
+  clicked(){
+    confirm("hi")
+    this.btnclick.emit()
+  }
+}```

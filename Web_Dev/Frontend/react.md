@@ -23,7 +23,7 @@ Notes
         ```
         * step 5:connect output.css to html file
         ```html
-        <!doctype html>
+        <!doctype html>admin/auth/user/
         <html>
         <head>
         <meta charset="UTF-8">

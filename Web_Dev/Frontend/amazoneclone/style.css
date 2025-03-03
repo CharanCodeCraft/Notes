@@ -12,7 +12,7 @@
 }
 /* box1 */
 .logo{
-    background-image: url(/Amazonclone/image/logo.webp);
+    background-image: url(/Notes/Web_Dev/Frontend/amazoneclone/image/logo.webp);
     background-size: contain;
     background-repeat: no-repeat;
     height: 30px;
@@ -171,7 +171,7 @@
 }
 /* hero section  */
 .hero-img{
-    background-image: url(/Amazonclone/image/bgimg.jpg);
+    background-image: url(/Notes/Web_Dev/Frontend/amazoneclone/image//bgimg.jpg);
     height:  600px;
     background-size: cover;
     display: flex;
@@ -228,16 +228,16 @@
     height: 60%;
 }
 .box1 .content-img {
-    background-image: url(/Amazonclone/image/beauty.jpg);
+    background-image: url(/Notes/Web_Dev/Frontend/amazoneclone/image/beauty.jpg);
 }
 .box2 .content-img {
-    background-image: url(/Amazonclone/image/toy.jpg);
+    background-image: url(/Notes/Web_Dev/Frontend/amazoneclone/image/toy.jpg);
 }
 .box3 .content-img {
-    background-image: url(/Amazonclone/image/pc.jpg);
+    background-image: url(/Notes/Web_Dev/Frontend/amazoneclone/image/pc.jpg);
 }
 .box4 .content-img {
-    background-image: url(/Amazonclone/image/home.jpg);
+    background-image: url(/Notes/Web_Dev/Frontend/amazoneclone/image/home.jpg);
 }
 .box4{
     margin-right: 0px;
