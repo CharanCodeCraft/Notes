@@ -146,7 +146,7 @@ def about(request):
 * and we can also add default values to our models like this `date_posted = models.DateTimeField(default=timezone.now)`
 * so to import default user model we use `from django.contrib.auth.models import User` which contains user model
 * we have concept of foreign key which is like relation between two models of one to many relation like this `author = models.ForeignKey(User, on_delete=models.CASCADE)`
-* after creating models we need to migrate them to database by running `python manage.py makemigrations` and then `python manage.py migrate`
+* after creating models we need to migrate them to database by running `python manage.py makemigrations` and then `python manage.py migrate``pip install django-crispy-forms`
 * to see actual sql query we use `python manage.py sqlmigrate blog 0001_initial`
 * to query database we can use `python manage.py shell` and then `from blog.models import Post` and then `Post.objects.all()`
 * we can also query directly in python file by importing the model
@@ -180,11 +180,91 @@ class Post(models.Model):
         return self.title
 ```
 
-## working with user creation forms 
+## working with user creation forms for register
 * we get user creation form from django which is written in class then converted into html form
 * we need to create a instance of form and then render it in html
 * to handle the request we can use the same view we created for get request bcuz the post request is forwarded to the same view
 * to add custom fields to the form we need to create a form.py file in app
 * then we can creat a new class for the form inherting the UserCreationForm
 * in our newly created form class we can add custom fields to the form with that we add meta data containg the model that it connects and fields that we want to add to the form including builtin fields
+* to give good design to built in register forms using crispy forms pkg by seeing the docs
+* and u can load it into template and also use pipe to add it
+```py
+//app register.html
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
 
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Join Today</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+    </div>
+
+{% endblock content %}
+//app forms.py
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class Userregisterform(UserCreationForm):
+    email=forms.EmailField()
+    
+    class Meta:
+        model=User
+        fields=['username','email','password1','password2'] 
+//app view.py
+def register(request):
+    if request.method=='POST':
+        form=Userregisterform(request.POST)
+        if(form.is_valid()):
+            form.save()
+            username=form.cleaned_data.get('username')
+            messages.success(request,f'Account created for {username}!')
+            return redirect('blog-home')
+    else:
+        form=Userregisterform()
+    return render(request,'user/register.html',{'form':form}) 
+```
+## working with user login forms with default view 
+* the same form can be used for login but here by default it provides view for login so we can directly render the html template which is to be specified
+* to redirect to home page after login we can use LOGIN_REDIRECT_URL in settings.py file
+* for logout u should use different approach as LogoutView is deprecated so u can create own view and use logout function in view to actually logout
+* we need to also define a login url to our own url path bcuz by default it is /accounts/login/ and we can use LOGIN_URL in settings.py file bcuz some time when we try to access unkown url it should redirects to login page
+* to allow certain route to only when authenticated we can use `@login_required` decorator for that view which extends the feature of the function
+```py
+//app view.py
+@login_required
+def profile(request):
+    return render(request,'user/profile.html')
+def logout_view(request):
+        logout(request)
+        return render(request, 'user/logout.html')
+//app logout.html
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="content-section">
+        <h1>You have been logged out</h1>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Login Again<a class="ml-2" href="{% url 'login' %}">Login</a>
+            </small>
+        </div>
+    </div>
+
+{% endblock content %}
+```
