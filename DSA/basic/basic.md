@@ -247,3 +247,159 @@ int a=4,b=5;
     if(a==0) cout<<b<<" is the gcd";
     else cout<<a<<" is the gcd";
 ```
+
+## Basic of Recursion
+* Recursion is a function that calls itself until a condition is met
+* when there is no condition then it becomes infinte loop until the stack overflows
+* when recusion meets a base condition it starts to get back to the function
+```cpp
+void f(){
+    if(cnt==3){ 
+        return;
+    }
+    cout<<"1"<<endl;
+    cnt++;
+    f();
+}
+```
+1. print 1 to n by backtracking
+```cpp
+void f(int n,int i){
+    if(i==0){ 
+        return;
+    }
+    i--;
+    f(n,i);
+    cout<<i<<endl;
+}
+```
+2. find sum of n numbers
+    1. parameterized recursion
+    ```cpp
+    void f(int n,int i,int &sum){
+    if(i>=n){ 
+        cout<<sum;
+        return ;
+    }
+    i++;
+    sum=sum+i;
+    f(n,i,sum);
+    }
+    ```
+    2. non parameterized recursion(function returning the sum)
+    ```cpp
+    int f(int n){
+    if(n==0){ 
+        return 0;
+    }
+    return n+f(n-1);
+    }
+    ```
+3. factorial of a number
+    ```cpp
+    int f(int n){
+    if(n==0){ 
+        return 1;
+    }
+    return n*f(n-1);
+    }
+    ```
+4. reverse of an array
+```cpp
+void f(int a[],int i,int n){
+    if(i>=n/2){ 
+        return;
+    }
+    swap(a[i],a[n-i-1]);
+    i++;
+    f(a,i,n);
+    }
+```
+5. check if string is palindrome
+```cpp
+void f(int i,string s,int n){
+    if(i>=n/2){
+        cout<<"true";
+        return;
+    }
+    if(s[i]!=s[n-i-1]){
+        cout<<"false";
+        return;
+    }
+    return f(i+1,s,n);
+}
+```
+6. fibonacci series(multiple recursions)
+* time complexity is O(2^n)
+```cpp
+int f(int n){
+   if(n<=1){
+    return n;
+   } 
+   return f(n-1)+f(n-2);
+}
+```
+## Basics of hashing
+* hashing is a data structure that stores data in a way that allows fast access to the data
+1. hashing with array
+    1. number hashing to find the frequency of a number in an array
+        * for this we can create a array with size equal to the maximum number in the array and store the frequency of each number in the array index of that same number
+        * for the size of has hash we can declare it to 10^6 in main and 10^7 in global
+        ```cpp
+        int q=5,n=5;
+        int a[5]={1,2,3,2,2};
+        // pre-compute
+        int hash[6]={0};
+        for(int i=0;i<n;i++){
+            hash[a[i]]++;
+        }
+        while(q--){
+            int num;
+            cin>>num;
+            //fetch
+            cout<<hash[num]<<endl;
+        }
+        ```
+    2. character hashing to find the frequency of a character in a string
+        * for this if we have only lower case letter then we can just have size of hash has 25 and store the frequency of each character in the hash with index of that asci value of character - asci value of 'a'
+        * this asci value is directly autocasted
+        * but if we consider all characters then we can have size of hash has 256 and store the frequency of each character in the hash with index of that asci value of character
+        ```cpp
+        int q=5;
+        string s="abcdefg";
+        // pre-compute
+        int hash[25]={0};
+        for(int i=0;i<s.size();i++){
+            hash[s[i]-'a']++;
+        }
+        for(int i=0;i<26;i++){
+            hash[i];
+        }
+        while(q--){
+            char ch;
+            cin>>ch;
+            //fetch
+            cout<<hash[ch-'a']<<endl;
+        }
+        ```
+2. hashing with maps
+    * as it uses a key,value pair we can store a element has key and its frequency as value
+    * so it reduces the size and also makes it easier to store character frequency
+    * it takes log(n) time but for unordered_map it is O(1)
+    ```cpp
+    int q=5,n=5;
+    int a[5]={1,2,3,2,2};
+    // pre-compute
+    unordered_map<int,int> hash;
+    for(int i=0;i<n;i++){
+        hash[a[i]]++;
+    }
+    while(q--){
+        int num;
+        cin>>num;
+        //fetch
+        cout<<hash[num]<<endl;
+    }
+    ```
+    * when we have bigger numbers to hash then we can use different hashing functions like modulo method or midsquare method
+    * but when we get a collision then we can use chaining method to resolve the collision like separate chaining or linear probing
